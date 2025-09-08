@@ -8,3 +8,9 @@ while (i<=10)
     console.log(i);
     i++;
 }
+
+randomstorm = ["Doksuri, Saomai, Vicente, Hagibis, Rumbia"];
+for(let i=0; i<randomstorm.length; i++)
+{
+    console.log(randomstorm[i])
+}
