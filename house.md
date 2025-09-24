@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Sr01's Reflection
 
 ## 1/ Five topics I know well
@@ -24,3 +25,6 @@ Google stuff and do random coding
 
 1. The debugging one, i hate that one with a passion. If i didn't write it, i have zero idea how it works.
 2. The ones with buttons. It was confusing and I learned very little.
+=======
+
+>>>>>>> 4ee2daf6917876c3cf5b5e6abe2e14e19939112f
