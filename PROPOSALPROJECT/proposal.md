@@ -1,4 +1,7 @@
 # TUSOK FOR THOUGHT
+
+![alt text](image-1.png)
+
 ## Little tidbits of knowledge to act as morsels for human ispiration
 
 
