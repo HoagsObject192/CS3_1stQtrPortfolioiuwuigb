@@ -7,3 +7,4 @@
 ## HOW WE'LL DO IT!
 
 ### Our website will boast a display that looks both modern and connected to nature. It will bring a sense of verisimilitude to mother Earth in our website that creates an inviting and warm aesthetic.
+
