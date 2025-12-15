@@ -8,8 +8,8 @@
 
 ### Our website will boast a display that looks both modern and connected to nature. It will bring a sense of verisimilitude to mother Earth in our website that creates an inviting and warm aesthetic.
 
-### Scroll through the wide selection of available topics via the topic gallery! Where each arrow click brings a new type of science for you to explore in a neat flashcard format. Hover over each flashcard to see a short summary of the science, or click it to get a more in depth review of the entire field. To accomplish this smooth motion, we will use the versatile programming language that is javascript. A mockup of what it would look like is attatched below.
+### Scroll through the wide selection of available topics via the topic gallery! Where each arrow click brings a new type of science or humanities for you to explore in a neat flashcard format. Hover over each flashcard to see a short summary of the topic, or click it to get a more in depth review of the entire field. To accomplish this smooth motion, we will use the versatile programming language that is javascript. A mockup of what it would look like is attatched below.
 
 ![alt text](image.png)
 
-### Once a card is clicked, it takes you to a short webpage, containing more detailed and thorough information on the field of science, including what it could be used for in the future!
+### Once a card is clicked, it takes you to a short webpage, containing more detailed and thorough information on the field, including what it could be used for in the future!
