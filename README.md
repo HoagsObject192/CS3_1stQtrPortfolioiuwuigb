@@ -18,7 +18,7 @@
 ## Instructions to create your backup CS3_1st Qtr Portfolio in github.com
 
 1. Create an account in [github.com ](https://github.com).  Use your **pshs.edu.ph** email account.
-2. Open the VSCode terminal by pressing **Ctrl-`**.
+2. Open the VSCode terminal by pressing **Ctrl-`**
 3. **Type the following:**
    - git init
    - git config --global user.name "github username" 
