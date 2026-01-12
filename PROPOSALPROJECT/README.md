@@ -19,7 +19,7 @@
       > In the STEM, HUMMS, INFO, AND MORE webpages, those small little user inputted tidbits of information appears
         and get cycled through many others where older ones get archived.
       > Also, at the top of the different webpages, we include 'Merienda ng Bayan' which is a compilation
-        of the tidbits of info that create a cohesive and comprehensive idea of the main concept.
+        of the tidbits of info that create a cohesive and comprehensive idea of the main concept (such as astronomy.)
 
 ## Definition of done :D !
 - Once we get at least 5 Merienda ng Bayan pages, 5 Kalyes, and a working forum! 
