@@ -1,22 +1,25 @@
-<form>
+<!DOCTYPE html>
+<html>
+<form id="myForm">
+    
     <label for="StudentID">StudentID:</label><br/>
-    <input type="number" id="StudentID" name="StudentID">
+    <input type="number" id="StudentID" name="StudentID" onblur="rFunction()"">
     <br/>
 
     <label for="userName">Full Name:</label><br/>
-   <input type="text" id="userName" name="userName"><br/>
+   <input type="text" id="userName" name="userName" onblur="rFunction()"><br/>
 
 
     <label for="birthday">Birthday:</label><br/>
-    <input type="date" id="birthday" name="birthday"><br/>
+    <input type="date" id="birthday" name="birthday" onblur="rFunction()"><br/>
 
 
 
     <label for="email">Enter your email:</label><br/>
-    <input type="email" id="email" name="email"><br/>
+    <input type="email" id="email" name="email" onblur="rFunction()"><br/>
 
     <label for="Mobile Phone">Mobile Phone:</label><br/>
-    <input type="text" id="Mobile Phone" name="Mobile Phone"><br/>
+    <input type="text" id="Mobile Phone" name="Mobile Phone" onblur="rFunction()"><br/>
 
 <label for="hob">Grade Level:</label></br>
 
@@ -40,12 +43,11 @@
 <p>Residency Type</p>
 
 
-  <input type="radio" id="i" name="region" value="Luzon"><br/>
-
+  <input type="radio" id="i" name="region" value="Luzon">
 
   <label for="i">Intern</label></br>
 
-  <input type="radio" id="e" name="region" value="Visayas"><br/>
+  <input type="radio" id="e" name="region" value="Visayas">
 
 
   <label for="e">Extern</label></br>
@@ -54,6 +56,8 @@
 <label for="club">Preferred Organization/Club</label></br>
 
     <select name="Grade" id="club">
+
+    <option value="selct">Select</option>
 
     <option value="ca">Baking</option>
 
@@ -77,42 +81,60 @@
 
     <form>
     <label for="comments">Why Us?</label></br>
-    <textarea id="tArea" name="comments" rows="4" cols="50"> </textarea><br/>
+    <textarea id="tArea" name="comments" rows="4" cols="50" onblur="rFunction()"> </textarea><br/>
     </form>
 
- <input type = "reset" value = "Reset"><br>
+ </form>
 
+ <form onsubmit="return rFunction();">
 
-</form>
+<input type="submit">
 
-
-
-
-
-
-
-
-
-
-
-
-
- <form onsubmit="return myFunction();">
-
-
- <input type = "submit" value = "Submit form"><br>
 </form>
 
 <p id="demo">
 
 </p>
 
+
+
 <script>
 
-    function myFunction(){
+    function rFunction(){
 
-        document.getElementById("demo").innerHTML = "Thanks for Submitting!";
+        var x = document.getElementById("inpt").value;
 
-  }
+     if (x == ""){
+
+                  alert("Go back to the textbox!");
+
+            }
+
+            else{
+
+alert("Value accepted.");
+
+}
+    }
 
 </script>
+
+
+<form onreset="return ree();">
+
+<input type="reset">
+
+</form>
+
+<script>
+
+    function ree(){
+
+        document.getElementById("myForm").reset();
+
+        return false;
+
+    }
+</script>
+
+</html>
