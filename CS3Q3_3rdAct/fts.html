@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<form id="myForm">
+    
+    <label for="StudentID">StudentID:</label><br/>
+    <input type="number" id="StudentID" name="StudentID" onblur="rFunction()" required>
+    <br/>
+
+    <label for="userName">Full Name:</label><br/>
+   <input type="text" id="userName" name="userName" onblur="rFunction()" required><br/>
+
+
+    <label for="birthday">Birthday:</label><br/>
+    <input type="date" id="birthday" name="birthday" onblur="rFunction()" required><br/>
+
+
+
+    <label for="email">Enter your email:</label><br/>
+    <input type="email" id="email" name="email" onblur="rFunction()"required><br/>
+
+    <label for="Mobile Phone">Mobile Phone:</label><br/>
+    <input type="text" id="Mobile Phone" name="Mobile Phone" onblur="rFunction()"required><br/>
+
+<label for="hob">Grade Level:</label></br>
+
+    <select name="Grade" id="hob">
+
+    <option value="7">Grade 7</option>
+
+    <option value="8">Grade 8</option>
+
+    <option value="9">Grade 9</option>
+
+    <option value="10">Grade 10</option>
+
+    <option value="11">Grade 11</option>
+
+    <option value="12">Grade 12</option>
+
+</select>
+
+
+<p>Residency Type</p>
+
+
+  <input type="radio" id="i" name="region" value="Luzon">
+
+  <label for="i">Intern</label></br>
+
+  <input type="radio" id="e" name="region" value="Visayas">
+
+
+  <label for="e">Extern</label></br>
+
+
+<label for="club">Preferred Organization/Club</label></br>
+
+    <select name="Grade" id="club">
+
+    <option value="selct">Select</option>
+
+    <option value="ca">Baking</option>
+
+    <option value="cb">Physics Club</option>
+
+    <option value="cc">Indonesian Pole Kicking</option>
+
+    <option value="cd">Research on the Moons of Jupiter</option>
+
+    <option value="ce">Black Magic Users</option>
+
+    <option value="cf">Illegal Chess Club</option>
+
+    <option value="cg">Mr. Sherman Love Club</option>
+
+    <option value="ch">Mr. Sherman Hate Club</option>
+
+    <option value="ci">Mr. White's fun chemistry club for children</option>
+
+</select><br/>
+
+    <form>
+    <label for="comments">Why Us?</label></br>
+    <textarea id="tArea" name="comments" rows="4" cols="50" onblur="rFunction()"> </textarea><br/>
+    </form>
+
+ </form>
+
+ <form onsubmit="handleSubmit(event);">
+
+<input type="submit">
+
+</form>
+
+<button onclick="window.location.href='vsu.html'">Go to Club Info Page</button>
+
+<p id="demo">
+
+</p>
+
+
+
+<script>
+    // Save form fields to localStorage on blur
+    function saveToLocalStorage(fieldId) {
+        const fieldValue = document.getElementById(fieldId).value;
+        localStorage.setItem(fieldId, fieldValue);
+    }
+
+    // Load all form data from localStorage on page load
+    function loadFromLocalStorage() {
+        const formFields = ['StudentID', 'userName', 'birthday', 'email', 'Mobile Phone', 'hob', 'region', 'club', 'tArea'];
+        formFields.forEach(fieldId => {
+            const savedValue = localStorage.getItem(fieldId);
+            if (savedValue) {
+                const element = document.getElementById(fieldId);
+                if (element) {
+                    element.value = savedValue;
+                }
+            }
+        });
+    }
+
+    function rFunction(){
+        // Save ALL form fields to localStorage
+        const formFields = ['StudentID', 'userName', 'birthday', 'email', 'Mobile Phone', 'hob', 'region', 'club', 'tArea'];
+        formFields.forEach(fieldId => {
+            const element = document.getElementById(fieldId);
+            if (element && element.value) {
+                localStorage.setItem(fieldId, element.value);
+            }
+        });
+        
+        // Update display after saving
+        displayLocalStorage();
+
+        var inptElement = document.getElementById("inpt");
+        if (inptElement) {
+            var x = inptElement.value;
+            if (x == ""){
+                alert("Go back to the textbox!");
+            }
+            else{
+                alert("Value accepted.");
+            }
+        }
+    }
+
+    // Handle form submission - keep all previous data
+    function handleSubmit(event) {
+        event.preventDefault();
+        
+        // Collect current form data
+        const formFields = ['StudentID', 'userName', 'birthday', 'email', 'Mobile Phone', 'hob', 'region', 'club', 'tArea'];
+        const currentSubmission = {};
+        
+        formFields.forEach(fieldId => {
+            const element = document.getElementById(fieldId);
+            if (element) {
+                currentSubmission[fieldId] = element.value;
+            }
+        });
+        
+        // Get existing submissions from localStorage or create new array
+        let submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+        
+        // Add current submission to array
+        submissions.push({
+            timestamp: new Date().toLocaleString(),
+            data: currentSubmission
+        });
+        
+        // Save updated submissions array
+        localStorage.setItem('submissions', JSON.stringify(submissions));
+        
+        // Show submission confirmation
+        alert("Form submitted successfully! Submission #" + submissions.length);
+        
+        // Clear all form fields for next submission
+        document.getElementById("myForm").reset();
+        
+        // Update display
+        displayLocalStorage();
+        displayAllSubmissions();
+        
+        return false;
+    }
+
+    // Display all submissions
+    function displayAllSubmissions() {
+        const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+        const demoElement = document.getElementById('demo');
+        
+        if (submissions.length === 0) {
+            demoElement.innerHTML = 'No submissions yet';
+            return;
+        }
+        
+        let displayText = '<strong>All Submissions:</strong><br><br>';
+        
+        submissions.forEach((submission, index) => {
+            displayText += `<strong>Submission #${index + 1}</strong> (${submission.timestamp})<br>`;
+            Object.entries(submission.data).forEach(([key, value]) => {
+                if (value) {
+                    displayText += `&nbsp;&nbsp;${key}: ${value}<br>`;
+                }
+            });
+            displayText += '<br>';
+        });
+        
+        demoElement.innerHTML = displayText;
+    }
+
+    // Display localStorage contents in the demo paragraph
+    function displayLocalStorage() {
+        const demoElement = document.getElementById('demo');
+        const formFields = ['StudentID', 'userName', 'birthday', 'email', 'Mobile Phone', 'hob', 'region', 'club', 'tArea'];
+        let displayText = '<strong>Saved Data:</strong><br>';
+        
+        formFields.forEach(fieldId => {
+            const value = localStorage.getItem(fieldId);
+            if (value) {
+                displayText += `${fieldId}: ${value}<br>`;
+            }
+        });
+        
+        if (displayText === '<strong>Saved Data:</strong><br>') {
+            displayText = 'No data saved yet';
+        }
+        
+        demoElement.innerHTML = displayText;
+    }
+
+    // Load data when page loads
+    window.addEventListener('DOMContentLoaded', function() {
+        loadFromLocalStorage();
+        displayLocalStorage();
+        displayAllSubmissions();
+    });
+
+    // Update display whenever a field is saved
+    document.addEventListener('blur', displayLocalStorage, true);
+</script>
+
+
+<form onreset="return ree();">
+
+<input type="reset">
+
+</form>
+
+<script>
+    function ree(){
+        document.getElementById("myForm").reset();
+        // Clear all localStorage for form fields
+        const formFields = ['StudentID', 'userName', 'birthday', 'email', 'Mobile Phone', 'hob', 'region', 'club', 'tArea'];
+        formFields.forEach(fieldId => {
+            localStorage.removeItem(fieldId);
+        });
+        return false;
+    }
+</script>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<h1>CLUB INFO</h1>
+<form id="myForm">
+    
+<button onclick="window.location.href='fts.html'">Back to Page</button>
+
+<label for="club">Club</label></br>
+
+    <select name="Grade" id="club">
+
+    <option value="selct">Select</option>
+
+    <option value="ca">Baking</option>
+
+    <option value="cb">Physics Club</option>
+
+    <option value="cc">Indonesian Pole Kicking</option>
+
+    <option value="cd">Research on the Moons of Jupiter</option>
+
+    <option value="ce">Black Magic Users</option>
+
+    <option value="cf">Illegal Chess Club</option>
+
+    <option value="cg">Mr. Sherman Love Club</option>
+
+    <option value="ch">Mr. Sherman Hate Club</option>
+
+    <option value="ci">Mr. White's fun chemistry club for children</option>
+
+</select><br/>
+
+<p id="demo"></p>
+
+<script>
+    // Display all submissions with matching club
+    function displayAllData() {
+        const demoElement = document.getElementById('demo');
+        
+        // Get the club selection
+        const clubSelect = document.getElementById('club');
+        const selectedClub = clubSelect.value;
+        const selectedClubText = clubSelect.options[clubSelect.selectedIndex].text;
+        
+        // Get all submissions from localStorage
+        const submissions = JSON.parse(localStorage.getItem('submissions')) || [];
+        
+        if (submissions.length === 0) {
+            demoElement.innerHTML = 'No submissions yet';
+            return;
+        }
+        
+        let displayText = '';
+        
+        // If no club selected, show message
+        if (selectedClub === 'selct') {
+            displayText = '<strong>Select a club to see matching submissions</strong><br><br>';
+            displayText += `<strong>Total Submissions:</strong> ${submissions.length}<br>`;
+        } else {
+            // Filter submissions by selected club
+            const matchingSubmissions = submissions.filter(sub => sub.data.club === selectedClub);
+            
+            if (matchingSubmissions.length === 0) {
+                displayText = `<strong>No submissions found for ${selectedClubText}</strong><br><br>`;
+                displayText += `<strong>Total Submissions:</strong> ${submissions.length}<br>`;
+            } else {
+                displayText = `<strong>Submissions for: ${selectedClubText}</strong><br>`;
+                displayText += `<strong>Found: ${matchingSubmissions.length} submission(s)</strong><br><br>`;
+                
+                matchingSubmissions.forEach((submission, index) => {
+                    displayText += `<strong>Submission #${submissions.indexOf(submission) + 1}</strong> (${submission.timestamp})<br>`;
+                    Object.entries(submission.data).forEach(([key, value]) => {
+                        if (value && key !== 'tArea') {
+                            displayText += `&nbsp;&nbsp;${key}: ${value}<br>`;
+                        }
+                    });
+                    displayText += '<br>';
+                });
+            }
+        }
+        
+        demoElement.innerHTML = displayText;
+    }
+    
+    // Load and display data on page load
+    window.addEventListener('DOMContentLoaded', displayAllData);
+    
+    // Update display when club selection changes
+    document.getElementById('club').addEventListener('change', displayAllData);
+</script>
+
+</html>
