@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add A Movie</title>
+</head>
+<body>
+
+
+
+
+
+<form action="/thirteenthreason.html" method="post">
+
+<label for="Title" required>Title:</label>
+<input type="text" id="Title" name="movies[Title]" required>
+<br><br/>
+<label for="year" required>Year:</label>
+<input type="text" id="year" name="movies[year]" required>
+<br><br/>
+
+<label for="genre" required>Genre:</label>
+        <select id="genre" name="movies[genre]" required>
+            <option value="" disabled selected>-- Select an option --</option>
+            <option value="ga">Action</option>
+            <option value="gb">Comedy</option>
+            <option value="gc">Drama</option>
+            <option value="gd">Horror</option>
+            <option value="ge">Sci-Fi</option>
+        </select>
+        <br><br>
+
+<label for="rating">Rating:</label><br>
+<input type="radio" name="rating" value="1" required> 1 ★<br>
+<input type="radio" name="rating" value="2"> 2 ★★<br>
+<input type="radio" name="rating" value="3"> 3 ★★★<br>
+<input type="radio" name="rating" value="4"> 4 ★★★★<br>
+<input type="radio" name="rating" value="5"> 5 ★★★★★<br>
+<br><br>
+
+    <input type="submit" value="Add Movie">
+</form>
+
+<div id="movieList"></div>
+
+<script>
+const form = document.querySelector('form');
+const movieList = document.getElementById('movieList');
+let movies = JSON.parse(localStorage.getItem('movies')) || [];
+
+function displayMovies() {
+    movieList.innerHTML = '<h2>Movie List</h2><ul>' + movies.map(movie => '<li>' + movie.title + ' (' + movie.year + ') - ' + movie.genre + ' - ' + movie.rating + '★'.repeat(parseInt(movie.rating)) + '</li>').join('') + '</ul>';
+}
+
+displayMovies();
+
+form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const title = document.getElementById('Title').value;
+    const year = document.getElementById('year').value;
+    const genreSelect = document.getElementById('genre');
+    const genre = genreSelect.options[genreSelect.selectedIndex].text;
+    const rating = document.querySelector('input[name="rating"]:checked').value;
+    const movie = {title: title, year: year, genre: genre, rating: rating};
+    movies.push(movie);
+    localStorage.setItem('movies', JSON.stringify(movies));
+    displayMovies();
+    form.reset();
+});
+</script>
