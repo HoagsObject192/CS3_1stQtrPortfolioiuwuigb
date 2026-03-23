@@ -48,7 +48,15 @@ const movieList = document.getElementById('movieList');
 let movies = JSON.parse(localStorage.getItem('movies')) || [];
 
 function displayMovies() {
-    movieList.innerHTML = '<h2>Movie List</h2><ul>' + movies.map(movie => '<li>' + movie.title + ' (' + movie.year + ') - ' + movie.genre + ' - ' + movie.rating + '★'.repeat(parseInt(movie.rating)) + '</li>').join('') + '</ul>';
+    movieList.innerHTML = '<h2>Movie List</h2><ul>' + movies.map((movie, index) => '<li>' + movie.title + ' (' + movie.year + ') - ' + movie.genre + ' - ' + movie.rating + '★'.repeat(parseInt(movie.rating)) + ' <button onclick="deleteMovie(' + index + ')">Delete</button></li>').join('') + '</ul>';
+}
+
+function deleteMovie(index) {
+    if (confirm('Are you sure you want to delete this movie?')) {
+        movies.splice(index, 1);
+        localStorage.setItem('movies', JSON.stringify(movies));
+        displayMovies();
+    }
 }
 
 displayMovies();
@@ -60,8 +68,16 @@ form.addEventListener('submit', function(e) {
     const genreSelect = document.getElementById('genre');
     const genre = genreSelect.options[genreSelect.selectedIndex].text;
     const rating = document.querySelector('input[name="rating"]:checked').value;
-    const movie = {title: title, year: year, genre: genre, rating: rating};
-    movies.push(movie);
+    const existingIndex = movies.findIndex(m => m.title === title);
+    if (existingIndex !== -1) {
+        const existingRating = parseInt(movies[existingIndex].rating);
+        const newRating = parseInt(rating);
+        const avgRating = Math.round((existingRating + newRating) / 2);
+        movies[existingIndex].rating = avgRating.toString();
+    } else {
+        const movie = {title: title, year: year, genre: genre, rating: rating};
+        movies.push(movie);
+    }
     localStorage.setItem('movies', JSON.stringify(movies));
     displayMovies();
     form.reset();
