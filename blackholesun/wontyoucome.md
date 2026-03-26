@@ -20,8 +20,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="author" content="<your names>" />
-  <meta name="revised" content="<date today>" />
+  <meta name="author" content="Thop Arellano" />
+  <meta name="revised" content="March 26 2026" />
   <style>
     body { font-family: Arial, sans-serif; }
     .header, .footer {
